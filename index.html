@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Fejszámolás</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 400px;
+            box-shadow: 10px 10px 20px grey;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container border">
+        <div class="row justify-content-center ">
+            <h1 class="text-center text-decoration font-weight-bold mt-4"
+                style="font-family: Georgia, Times New Roman, Times, serif">Jó vagy fejszámolásban ?</h1>
+        </div>
+        <div class="row justify-content-center">
+            <input type="button" id="klikk" value="Új számokat kérek !" 
+                class="col-6 form-control btn btn-info btn-outline-warning mt-3" onclick="ertek()" >
+        </div>
+
+
+        <div class="row justify-content-center mt-4 ">
+
+            <div id="nr1" class="col text-center font-weight-bold text-primary" style="font-size: 2rem;"></div>
+            <div class="col text-center  osszead"></div>
+            <div id="nr2" class="col text-center  font-weight-bold text-primary" style="font-size: 2rem;"></div>
+            <div class="col text-center egyenlo"></div>
+            <div class="col-4 text-center m-1">
+                <input type="number" id="giv" class="form-control text-info" placeholder="összeg" onkeyup="operation()">
+            </div>
+
+        </div>
+        <div id="super" class="row justify-content-center mt-4 fa-2x"></div>
+       <p id="ido"></p>
+    </div>
+
+    <script>
+        let plus = '<i class="fa-regular fa-square-plus fa-2x"></i>'
+        let equal = '<i class="fa-solid fa-equals fa-2x"></i>'
+        let nok = '<i class="fa-solid fa-question text-danger fa-2x"></i>'
+        let ok = '<i class="fa-solid fa-thumbs-up text-success fa-2x"></i>'
+
+        document.querySelector('.osszead').innerHTML = plus
+        document.querySelector('.egyenlo').innerHTML = equal
+ 
+        let szam = ''
+        let szamok = ''
+        let x = ''
+
+        function ertek() {
+            let dis=document.getElementById('giv')
+            dis.disabled= false
+
+            const randFc = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+            const randNr = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+            szam = randFc(1, 100)
+            szamok = randNr(1, 100)
+            console.log(szam, szamok)
+            x= szam + szamok
+            console.log(x)
+           
+            document.getElementById('giv').value = ''
+            document.getElementById('super').innerHTML = ''
+            document.getElementById('nr1').innerHTML = ''
+            document.getElementById('nr2').innerHTML = ''
+            document.getElementById('nr1').innerHTML = szam
+            document.getElementById('nr2').innerHTML = szamok
+
+        }
+
+        function operation() {
+            let dis=document.getElementById('giv')
+            dis.disabled= false
+            let tipp = +document.getElementById('giv').value
+            //console.log(tipp)
+            document.getElementById('super').innerHTML = tipp == x ? ok : nok
+            if(tipp==x){
+                dis.disabled = !dis.disabled
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
