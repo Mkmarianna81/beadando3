@@ -56,19 +56,21 @@
 
         document.querySelector('.osszead').innerHTML = plus
         document.querySelector('.egyenlo').innerHTML = equal
- 
-        let szam = ''
-        let szamok = ''
+        
+        const randFc = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+        let szam 
+        let szamok
         let x = ''
+        
+        window.onload=ertek
 
-        function ertek() {
-            let dis=document.getElementById('giv')
+        function ertek(szam, szamok) {
+          
+            let dis = document.getElementById('giv')
             dis.disabled= false
 
-            const randFc = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
-            const randNr = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
             szam = randFc(1, 100)
-            szamok = randNr(1, 100)
+            szamok = randFc(1, 100)
             console.log(szam, szamok)
             x= szam + szamok
             console.log(x)
